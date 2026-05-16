@@ -28,30 +28,3 @@ If you are cloning this repository directly into that directory, no copy step is
 | `security-auditor` | opus | Use for passive, repo-wide security review of code, configuration, and architecture. Read-only — no exploitation, no active probing. |
 | `swift-expert` | sonnet | Use for iOS Swift implementation work — SwiftUI, async/await, actors and structured concurrency, ARC, UIKit interop. Edits files and runs the project's xcodebuild/swift test commands. |
 | `verifier` | opus | Proactively use for goal-backward integration verification — static checks that a feature is wired together (file existence, no stubs, imports/registration, advisory data flow). |
-
-## Agent file format
-
-Each agent definition is a Markdown file with a YAML frontmatter block followed by the system prompt body.
-
-```markdown
----
-name: agent-name
-description: "One-line description shown to the orchestrator for routing decisions."
-tools: Read, Edit, Bash, Glob, Grep
-model: sonnet
----
-
-System prompt body...
-```
-
-Frontmatter fields used by the agents in this collection:
-
-| Field | Required | Values seen in this repo |
-|---|---|---|
-| `name` | yes | kebab-case string; matches the filename |
-| `description` | yes | quoted string; used by Claude Code for agent selection |
-| `tools` | yes | comma-separated list of Claude Code tool names |
-| `model` | yes | `haiku`, `sonnet`, or `opus` |
-| `memory` | no | not currently used by any agent |
-
-Place the file in `~/.claude/agents/<name>.md`. The filename does not need to match the `name` field, but keeping them consistent avoids confusion.
