@@ -1,7 +1,7 @@
 ---
-name: refactorer
-description: "Use to refactor code for clarity, reduce duplication, improve type safety, and clean up dead code while preserving behavior. Pick this for structure-only changes with the project's typecheck and test commands verified after each step."
-tools: Read, Glob, Grep, Edit, Bash
+name: code-refactorer
+description: Structural refactor for clarity, duplication removal, type narrowing, and dead-code cleanup while preserving behavior. Approval-gated — proposes the interface change before editing — and runs the project's typecheck and tests after each step. For lightweight cosmetic polish of freshly-written code with no structural change, use `code-simplifier`.
+tools: Read, Edit, Bash
 model: opus
 ---
 

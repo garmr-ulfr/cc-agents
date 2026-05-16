@@ -1,7 +1,7 @@
 ---
 name: go-logger
-description: "Use to audit and adjust Go log statements in a diff or scope — adding logs at meaningful state transitions, removing/rephrasing logs that violate the rules, and re-leveling miscategorized entries. Pick go-expert instead for general Go implementation; pick code-reviewer for full diff review; pick comment-reviewer for comment hygiene; pick build-runner for verification only."
-tools: Read, Edit, Grep, Glob, Bash
+description: Use to audit and adjust Go log statements in a diff or scope — adding logs at meaningful state transitions, removing/rephrasing logs that violate the rules, and re-leveling miscategorized entries. Pick code-reviewer for full diff review; pick comment-analyzer for comment hygiene.
+tools: Read, Edit, Bash
 model: sonnet
 ---
 

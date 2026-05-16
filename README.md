@@ -16,17 +16,15 @@ If you are cloning this repository directly into that directory, no copy step is
 
 | Name | Model | Description |
 |---|---|---|
-| `build-runner` | haiku | Proactively use to run the project's typecheck, tests, and build, and report results with file:line errors. Read-only. |
 | `code-reviewer` | opus | Use for review of code changes — quality, security, architecture compliance, and test coverage. Read-only. |
-| `comment-reviewer` | sonnet | Proactively use after comments are added or modified to verify them against the project's comment-hygiene checklist. Edits violations in place. |
+| `comment-analyzer` | opus | Use to review comments for hygiene (why-not-what, no narration, no ticket refs) and accuracy (claims that match the code). Advisory only — flags issues; never edits. |
 | `debugger` | opus | Use to reproduce a specific bug in a single process or service, isolate the failure, and produce a minimal fix. Edits files. |
 | `flutter-expert` | sonnet | Use for Flutter UI work — widgets, state, navigation, theming, Dart code, and the Dart side of platform channels. |
-| `go-expert` | sonnet | Use for Go implementation work — concurrency design, idiom-sensitive refactors, generics, performance-critical paths, error-handling design. Edits files and runs go build/test. |
 | `go-logger` | sonnet | Use to audit and adjust Go log statements in a diff or scope — adding logs at meaningful state transitions, removing/rephrasing violations, and re-leveling miscategorized entries. |
 | `kotlin-expert` | sonnet | Use for Android Kotlin implementation work — coroutines, Jetpack Compose, ViewModel/lifecycle, and Android Jetpack integration. Edits code and runs Gradle. |
 | `penetration-tester` | opus | Use for authorized active security testing — exploit validation, hands-on vulnerability demonstration, and offensive assessment of running systems. Requires explicit authorization. |
 | `readme-generator` | sonnet | Use to generate or update a maintainer-ready README built from verified repository reality — manifests, scripts, source, tests, CI configs. |
-| `refactorer` | opus | Use to refactor code for clarity, reduce duplication, improve type safety, and clean up dead code while preserving behavior. |
+| `code-refactorer` | opus | Use to refactor code for clarity, reduce duplication, improve type safety, and clean up dead code while preserving behavior. |
 | `security-auditor` | opus | Use for passive, repo-wide security review of code, configuration, and architecture. Read-only — no exploitation, no active probing. |
 | `swift-expert` | sonnet | Use for iOS Swift implementation work — SwiftUI, async/await, actors and structured concurrency, ARC, UIKit interop. Edits files and runs the project's xcodebuild/swift test commands. |
 | `verifier` | opus | Proactively use for goal-backward integration verification — static checks that a feature is wired together (file existence, no stubs, imports/registration, advisory data flow). |
@@ -54,6 +52,6 @@ Frontmatter fields used by the agents in this collection:
 | `description` | yes | quoted string; used by Claude Code for agent selection |
 | `tools` | yes | comma-separated list of Claude Code tool names |
 | `model` | yes | `haiku`, `sonnet`, or `opus` |
-| `memory` | no | `user` (seen in `comment-reviewer`) |
+| `memory` | no | not currently used by any agent |
 
 Place the file in `~/.claude/agents/<name>.md`. The filename does not need to match the `name` field, but keeping them consistent avoids confusion.

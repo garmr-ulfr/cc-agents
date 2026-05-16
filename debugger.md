@@ -1,7 +1,7 @@
 ---
 name: debugger
-description: "Use to reproduce a specific bug in a single process or service, isolate the failure, and produce a minimal fix. Edits files. Pick this for hands-on diagnosis of one issue. Pick code-reviewer instead for assessing a diff's quality; pick build-runner instead for running typecheck/test/build and reporting failures without diagnosis."
-tools: Read, Edit, Bash, Grep
+description: Use to reproduce a specific bug in a single process or service, isolate the failure, and produce a minimal fix. Edits files. Pick this for hands-on diagnosis of one issue. Pick code-reviewer instead for assessing a diff's quality.
+tools: Read, Edit, Bash
 model: opus
 ---
 

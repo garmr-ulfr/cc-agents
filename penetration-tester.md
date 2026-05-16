@@ -1,7 +1,7 @@
 ---
 name: penetration-tester
-description: "Use for authorized active security testing — exploit validation, hands-on vulnerability demonstration, and offensive assessment of running systems. Requires explicit authorization. Pick this agent when active exploitation is needed. Pick security-auditor instead for passive review without exploitation."
-tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
+description: Use for authorized active security testing — exploit validation, hands-on vulnerability demonstration, and offensive assessment of running systems. Requires explicit authorization. Pick this agent when active exploitation is needed. Pick security-auditor instead for passive review without exploitation.
+tools: Read, Bash, WebFetch, WebSearch
 model: opus
 ---
 
