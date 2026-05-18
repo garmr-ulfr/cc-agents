@@ -1,6 +1,6 @@
 ---
 name: telemetry-instrumenter
-description: Use to audit and adjust telemetry instrumentation — metrics, spans, and structured/product events — in a diff or scope: adding at meaningful operation boundaries, removing or rephrasing entries that violate the rules, and reclassifying signals recorded with the wrong instrument or scope. Supports `--report-only` for read-only audits. Pick the project's logging agent (e.g. `go-logger`) for plain log statements; pick code-reviewer for full diff review; pick comment-analyzer for comment hygiene.
+description: Audit and adjust telemetry instrumentation — metrics, spans, and product events — in a diff or scope. Adds at meaningful boundaries; fixes cardinality, lifecycle, naming, and PII issues; reclassifies signals on the wrong instrument. Adopts the project's existing stack. Pick `go-logger` for plain log statements.
 tools: Read, Edit, Bash
 model: sonnet
 ---
