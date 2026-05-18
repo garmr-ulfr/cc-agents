@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Use for review of code — quality, security, architecture compliance, and test coverage. Read-only: reports issues with file:line, never edits. Caller specifies what to review (a diff, a branch, files, a directory, a function); defaults to uncommitted changes. Pick security-auditor instead for security-only review against frameworks; pick debugger for fixing a specific bug; pick comment-analyzer for deep comment-hygiene review; pick verifier for static integration/wiring checks.
+description: Use for review of code — quality, security, architecture compliance, and test coverage. Read-only — reports issues with file:line, never edits. Caller specifies what to review (a diff, a branch, files, a directory, a function); defaults to uncommitted changes. Pick security-auditor instead for security-only review against frameworks; pick debugger for fixing a specific bug; pick comment-analyzer for deep comment-hygiene review; pick verifier for static integration/wiring checks.
 tools: Read, Bash
 model: opus
 ---
