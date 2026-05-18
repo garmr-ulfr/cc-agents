@@ -27,4 +27,5 @@ If you are cloning this repository directly into that directory, no copy step is
 | `code-refactorer` | opus | Use to refactor code for clarity, reduce duplication, improve type safety, and clean up dead code while preserving behavior. |
 | `security-auditor` | opus | Use for passive, repo-wide security review of code, configuration, and architecture. Read-only — no exploitation, no active probing. |
 | `swift-expert` | sonnet | Use for iOS Swift implementation work — SwiftUI, async/await, actors and structured concurrency, ARC, UIKit interop. Edits files and runs the project's xcodebuild/swift test commands. |
+| `telemetry-instrumenter` | sonnet | Use to audit and adjust telemetry instrumentation (metrics, traces, product events) in a diff or scope — adds at meaningful boundaries, fixes cardinality, naming, lifecycle, and PII issues. Adopts the project's existing stack. |
 | `verifier` | opus | Proactively use for goal-backward integration verification — static checks that a feature is wired together (file existence, no stubs, imports/registration, advisory data flow). |
