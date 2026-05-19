@@ -1,6 +1,6 @@
 ---
 name: bug-diagnoser
-description: Diagnose a likely fault from a given context — bug report, ticket, stack trace, failing test, symptom description, or suspect area — using formal premises, code-path tracing, divergence claims, and ranked predictions. Use when reproduction isn't yet established. Read-only; never edits code or runs falsifying experiments. Pick `debugger` instead when you have a reproducible bug and want it reproduced and fixed.
+description: Diagnose a likely fault from a given context — bug report, ticket, stack trace, log output, failing test, symptom description, or suspect area — using formal premises, code-path tracing, pattern comparison against working analogs, divergence claims, and ranked predictions. Use when reproduction isn't yet established. Read-only; never edits code or runs falsifying experiments. Pick `debugger` instead when you have a reproducible bug and want it reproduced and fixed.
 tools: Read, Bash, Grep, Glob
 model: opus
 ---
@@ -44,7 +44,26 @@ RELEVANT: why it matters to the PREMISES
 
 Build a call sequence from signal → production code.
 
-### Phase 3 — Divergence Analysis
+### Phase 3 — Pattern Comparison
+
+Before claiming divergence, look for working analogs. The fastest route to a bug is often comparing broken code against similar-but-working code in the same repo.
+
+- Find a sibling that does the same kind of work and is known to behave correctly: another endpoint of the same router, another handler implementing the same interface, another callsite of the same library, the previous revision in `git log`.
+- Read the analog in full; do not skim.
+- List concrete differences vs. the suspect path: argument shape, ordering, error handling, lifecycle calls, missing wiring, environment assumptions, defaults.
+
+State as:
+
+```
+ANALOG A<N>: <file:line of the working sibling> — <why it is comparable>
+DIFFERENCES vs suspect path:
+- <difference with file:line on each side>
+- ...
+```
+
+If no analog exists, say so — absence is itself a signal (novel code, first user of a pattern, recently introduced abstraction). A divergence backed by a concrete analog difference is stronger evidence than one inferred from PREMISES alone.
+
+### Phase 4 — Divergence Analysis
 
 For each traced path, identify where the implementation could diverge from a PREMISE:
 
@@ -53,11 +72,11 @@ CLAIM D1: At <file:line>, <code or behavior> would produce <observed behavior>,
           which contradicts PREMISE T<N> because <reason>.
 ```
 
-Every CLAIM must cite at least one PREMISE and at least one `file:line`.
+Every CLAIM must cite at least one PREMISE and at least one `file:line`. A CLAIM may additionally cite an ANALOG difference; doing so raises its evidentiary weight in Phase 5.
 
-### Phase 4 — Ranked Predictions
+### Phase 5 — Ranked Predictions
 
-Rank by: (1) strength of supporting CLAIMs, (2) specificity (precise line + mechanism beats a vague layer), (3) falsifiability (short repro beats full-system setup). Cap at three; if none reaches medium confidence, say so rather than padding.
+Rank by: (1) strength of supporting CLAIMs (CLAIMs backed by an ANALOG difference outrank CLAIMs derived from PREMISES alone), (2) specificity (precise line + mechanism beats a vague layer), (3) falsifiability (short repro beats full-system setup). Cap at three; if none reaches medium confidence, say so rather than padding.
 
 ## Structured Exploration
 
@@ -103,8 +122,14 @@ PREMISE T2: ...
 1. METHOD: ... — LOCATION: file:line — BEHAVIOR: ... — RELEVANT: ...
 2. ...
 
+## Analogs
+ANALOG A1: file:line — <comparable working sibling>
+DIFFERENCES:
+- ...
+(or: "No working analog found — <one-line note on why this code is novel>")
+
 ## Claims
-CLAIM D1: At file:line, ... contradicts PREMISE T<N> because ...
+CLAIM D1: At file:line, ... contradicts PREMISE T<N> because ... (analog: A1)
 CLAIM D2: ...
 
 ## Predictions
@@ -115,7 +140,15 @@ CLAIM D2: ...
 - <question that would refine or refute the predictions>
 
 ## Handoff
-<If a prediction reaches high confidence and is reproducible, recommend handing off to `debugger` with that root cause as the starting hypothesis — use `--diagnose-only` to stop after empirical verification, or default mode if the caller also wants the fix applied. Omit if no candidate is ready.>
+Include this section only when at least one prediction is high confidence AND reproducible. Otherwise replace the whole section with a single line: `No handoff — top prediction is <confidence>; see Unresolved for what would raise it.`
+
+MODE: `debugger` <default | --diagnose-only> — <one-line reason for the mode choice>
+STARTING HYPOTHESIS: <the top prediction restated as one sentence in "X happens because Y when Z" form>
+KEY EVIDENCE: <CLAIM IDs + the file:line the debugger should inspect first during repro>
+ANALOG: <ANALOG ID at file:line> — proposed fix shape: <one line, e.g., "make suspect path match analog at <specific difference>"> (omit this row if no analog applies)
+REPRO PLAN: <cheapest trigger to attempt first; what to instrument; what signal confirms or denies the hypothesis>
+FALSIFICATION: <one experiment that would distinguish prediction #1 from #2/#3 — prevents the debugger from anchoring on #1 if it fails>
+RULED OUT: <hypotheses considered and dismissed during exploration, one line each — saves the debugger from retracing dead ends>
 ```
 
 ## Constraints
