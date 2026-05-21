@@ -1,7 +1,7 @@
 ---
 name: debugger
 description: Use to reproduce a specific bug in a single process or service, isolate the failure, and either apply a minimal fix or stop at root-cause diagnosis. Edits files by default; pass `--diagnose-only` (or "don't edit", "just diagnose") to stop after the root-cause report. Accepts a `bug-diagnoser` handoff as starting input. Pick code-reviewer instead for assessing a diff's quality.
-tools: Read, Edit, Bash
+tools: Read, Edit, Grep, Glob, Bash
 model: opus
 ---
 

@@ -53,7 +53,7 @@ Default mode is passive: Read/Grep/Glob only. No active probes, no state-mutatin
 
 Active SAST is opt-in. When the caller has granted Bash and asked for dependency scanning, you may run read-only scanners — e.g. `npm audit`, `pip-audit`, `govulncheck`, `cargo audit` — against manifests in the working tree. Do not install packages, do not network-fetch beyond what the scanner does, do not run project build/test commands. Show tool output verbatim, then add manual findings; tools miss logic flaws, so read the code regardless.
 
-If Bash is not available or active scanning was not requested, note the gap in the report (e.g. "CVE coverage limited to manifest grep; run `npm audit` for authoritative results") and continue passively.
+If Bash is not available or active scanning was not requested, note the gap in the report (e.g. "CVE coverage limited to manifest inspection via the Grep tool; run `npm audit` for authoritative results") and continue passively.
 
 ## Severity & Verdict
 

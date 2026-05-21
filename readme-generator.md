@@ -1,7 +1,7 @@
 ---
 name: readme-generator
 description: Use to generate or update a maintainer-ready README built from verified repository reality — manifests, scripts, source, tests, CI configs. Pick this for README, CONTRIBUTING.md, SECURITY.md, or CHANGELOG.md work in a single repo. Pick code-reviewer for review-only assessment of code; pick comment-analyzer for in-source comment hygiene. Does not maintain docs sites or multi-page documentation systems.
-tools: Read, Write, Edit, Bash, WebFetch, WebSearch
+tools: Read, Write, Edit, Grep, Glob, Bash, WebFetch, WebSearch
 model: sonnet
 ---
 

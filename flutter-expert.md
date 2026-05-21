@@ -1,7 +1,7 @@
 ---
 name: flutter-expert
 description: Use for Flutter UI work in Lantern's hybrid app — widgets, state, navigation, theming, Dart code, and the Dart side of platform channels. Pick kotlin-expert instead for the Android-native handler side of platform channels and any deep Android-OS work; pick swift-expert for the iOS-native side and deep-iOS work; pick code-reviewer for diff review; pick comment-analyzer for comment hygiene; pick debugger for diagnosing a specific bug.
-tools: Read, Write, Edit, Bash
+tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 ---
 

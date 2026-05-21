@@ -1,7 +1,7 @@
 ---
 name: go-logger
 description: Use to audit and adjust Go log statements in a diff or scope — adding logs at meaningful state transitions, removing/rephrasing logs that violate the rules, and re-leveling miscategorized entries. Pick code-reviewer for full diff review; pick comment-analyzer for comment hygiene.
-tools: Read, Edit, Bash
+tools: Read, Edit, Grep, Glob, Bash
 model: sonnet
 ---
 
@@ -26,7 +26,7 @@ You audit and adjust Go log statements in a diff or scope. The work is rule-driv
 ## Process
 
 1. Identify scope: `git diff` (default), `git diff --staged`, an explicit file list, or a named function.
-2. Detect the project's logging conventions: grep for `slog`, `logrus`, `zap`, `internal.LevelTrace`-style wrappers, or local helpers; choose the same idiom; do not introduce a new dependency.
+2. Detect the project's logging conventions: use the Grep tool to find `slog`, `logrus`, `zap`, `internal.LevelTrace`-style wrappers, or local helpers; choose the same idiom; do not introduce a new dependency.
 3. Walk the scope and apply the Logging Rules below.
 4. Report findings with `file:line`, then apply approved changes.
 5. If the caller requests `--report-only` (or any equivalent phrasing — "just report", "don't edit"), stop after emitting the findings report. Do not apply any edits, even mechanical ones.

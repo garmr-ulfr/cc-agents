@@ -1,7 +1,7 @@
 ---
 name: swift-expert
 description: Use for iOS Swift implementation work — SwiftUI, async/await, actors and structured concurrency, ARC, UIKit interop. Edits files and runs the project's xcodebuild/swift test commands. Pick code-reviewer for read-only review of a Swift diff; pick comment-analyzer for Swift doc-comment hygiene; pick debugger for diagnosing a specific bug.
-tools: Read, Write, Edit, Bash
+tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 ---
 

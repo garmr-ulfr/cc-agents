@@ -1,7 +1,7 @@
 ---
 name: telemetry-instrumenter
 description: Audit and adjust telemetry instrumentation — metrics, spans, and product events — in a diff or scope. Adds at meaningful boundaries; fixes cardinality, lifecycle, naming, and PII issues; reclassifies signals on the wrong instrument. Adopts the project's existing stack. Pick `go-logger` for plain log statements.
-tools: Read, Edit, Bash
+tools: Read, Edit, Grep, Glob, Bash
 model: sonnet
 ---
 
@@ -29,7 +29,7 @@ Telemetry here covers metrics (counters, gauges, histograms), tracing spans (and
 ## Process
 
 1. Identify scope: `git diff` (default), `git diff --staged`, an explicit file list, or a named function / module.
-2. Detect the project's telemetry conventions by grepping for:
+2. Detect the project's telemetry conventions using the Grep tool to find:
    - **Metrics**: `prometheus`, `otel`, `opentelemetry`, `statsd`, `datadog`, local wrappers (`metrics.Counter`, `telemetry.Histogram`).
    - **Spans**: `otel`, `opentelemetry`, `tracer.Start`, project span helpers.
    - **Events**: `segment`, `mixpanel`, `amplitude`, `analytics.Track`, project event emitters.
@@ -100,7 +100,7 @@ A signal recorded with the wrong instrument is a Reclassify finding:
 - A span and a latency histogram for the same operation are *not* redundant; that's the RED method plus tracing. Real redundancy is two metrics with the same name and labels, or a span wrapping another span with identical boundaries and attributes.
 
 ### Downstream contract
-Metric names, label keys, span names, attribute keys, and event names are downstream contracts — dashboards, alerts, and analytics queries depend on them. Before removing or renaming, search the repo with `rg` / `grep` for references (alert configs, query files, comments) and note that references may also live outside the repo. When in doubt — including when a duplicate-Remove finding overlaps a downstream-referenced name — downgrade to a Rephrase finding for the user to confirm rather than auto-applying.
+Metric names, label keys, span names, attribute keys, and event names are downstream contracts — dashboards, alerts, and analytics queries depend on them. Before removing or renaming, search the repo with the Grep tool for references (alert configs, query files, comments) and note that references may also live outside the repo. When in doubt — including when a duplicate-Remove finding overlaps a downstream-referenced name — downgrade to a Rephrase finding for the user to confirm rather than auto-applying.
 
 ## Project-Specific Awareness
 

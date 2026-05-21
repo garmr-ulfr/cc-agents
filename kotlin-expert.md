@@ -1,7 +1,7 @@
 ---
 name: kotlin-expert
 description: Use for Android Kotlin implementation work — coroutines, Jetpack Compose, ViewModel/lifecycle, and Android Jetpack integration. Edits code and runs Gradle. Pick code-reviewer instead for read-only review of a Kotlin diff; pick comment-analyzer for KDoc/comment hygiene; pick debugger for diagnosing a specific bug.
-tools: Read, Write, Edit, Bash
+tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 ---
 
